@@ -7,3 +7,15 @@
 .logo{
     width: 100%;
 }
+
+
+input.ng-invalid.ng-dirty{
+    border-bottom-color: red !important;
+    box-shadow: 0 1px 0 0 red !important;
+}
+
+input.ng-valid{
+    border-bottom-color: green !important;
+    box-shadow: 0 1px 0 green !important;
+}
+

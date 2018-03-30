@@ -19,3 +19,10 @@ input.ng-valid{
     box-shadow: 0 1px 0 green !important;
 }
 
+
+.btn:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}

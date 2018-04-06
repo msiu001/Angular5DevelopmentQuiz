@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
@@ -9,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { ResultComponent } from './result/result.component';
 import { appRoutes } from './routes';
+import { QuizService } from './shared/quiz.service';
 
 
 @NgModule({
@@ -22,10 +24,11 @@ import { appRoutes } from './routes';
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    HttpClientModule
 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ QuizService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -8,7 +8,7 @@
           <img src="/assets/img/logo.jpg" style="width:100%; height:300px" class="offset-s3">
         </div>
           <div class="card-body">
-            <form #registerForm="ngForm">
+            <form #registerForm="ngForm" (ngSubmit)="OnSubmit(Name.value, Email.value)">
                 
                     <div class="form-group">
                       <label for="name"><h5>Name</h5></label>          

@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
       (data : any) => {
 
         localStorage.clear();
-        localStorage.setItem('particiant', JSON.stringify(data));
+        localStorage.setItem('participant', JSON.stringify(data));
         this.route.navigate(['/quiz'])
       }
     )

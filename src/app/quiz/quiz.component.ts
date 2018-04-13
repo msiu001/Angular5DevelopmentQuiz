@@ -26,7 +26,16 @@ export class QuizComponent implements OnInit {
   startTimer(){
     this.quizService.timer = setInterval(() => {
       this.quizService.seconds++;
-    }, 1000);
+    }, 1000);  
+  }
+
+  Answer(qID, choice){
+    this.quizService.qns[this.quizService.qnProgress].Answer = choice;
+    this.quizService.qnProgress++;
+    if(this.quizService.qnProgress == 10){
+      clearInterval(this.quizService.timer);
+      this.router.navigate(['/result']);
+    }
   }
 
 }

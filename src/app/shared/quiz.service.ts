@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';//'selenium-webdriver/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -11,12 +11,13 @@ export class QuizService {
   seconds: number;
   timer;
   qnProgress: number;
-
-
+  
 
   //-----Helper------
-
   constructor( private http : HttpClient) { }
+  displayTimeElapsed(){
+    return Math.floor(this.seconds / 3600 ) + ':' + Math.floor(this.seconds / 60 ) + ':' + Math.floor(this.seconds % 60);
+  }
 
 
   //--- Http Methods-----

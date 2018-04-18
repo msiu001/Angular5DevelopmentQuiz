@@ -11,7 +11,7 @@ export class QuizService {
   seconds: number;
   timer;
   qnProgress: number;
-  
+  correctAnswersCount: number =0;
 
   //-----Helper------
   constructor( private http : HttpClient) { }
@@ -35,5 +35,21 @@ export class QuizService {
     return this.http.get(this.rootUrl + '/api/Questions');
   }
 
+  getAnswers(){
+    var body = this.qns.map( x => x.QnID );
+    return this.http.post(this.rootUrl + '/api/Answers', body );
+  }
+
+  getParticipantName(){
+    var Participant = JSON.parse(localStorage.getItem('participant'));
+    return Participant.Name;
+  }
+
+  submitScore(){
+    var body = JSON.parse(localStorage.getItem('participant'));
+    body.Score = this.correctAnswersCount;
+    body.TimeSpent = this.seconds;
+    return this.http.post(this.rootUrl + "/api/UpdateOutput", body);
+  }
 
 }

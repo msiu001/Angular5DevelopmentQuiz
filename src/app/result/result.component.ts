@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuizService } from '../shared/quiz.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-result',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultComponent implements OnInit {
 
-  constructor() { }
+  constructor( private quizService: QuizService, private router: Router) { }
 
   ngOnInit() {
+    this.quizService.getAnswers().subscribe(
+      (data : any) => {
+        this.quizService.correctAnswersCount =0;
+        this.quizService.qns.forEach((e,i) => {
+          if(e.answer == data[i])
+          this.quizService.correctAnswersCount++;                   
+          e.correct = data[i];
+        });
+      }
+    );
   }
+
+
+  OnSubmit(){
+    this.quizService.submitScore().subscribe(() => {
+      this.restart();
+    });
+  }
+
+
+  restart(){
+    this.router.navigate(['/quiz']);
+  }
+
+
 
 }

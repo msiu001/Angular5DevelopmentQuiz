@@ -1,43 +1,120 @@
 <app-navbar></app-navbar>
-<br/><br/>
+<br/>
+<br/>
 <div class="row">
     <div class="col d-flex justify-content-center">
         <div class="card col-md-7 jobs_index_middle_panels" style="background-color:aquamarine">
-          <div class="align: text-center">
-            <h2><strong>Quiz Completed!</strong></h2>
-          </div>
-          <div class="card-body">
-            <div class="row">
-                <div class="card col-md-6 border-0" style="background-color:aquamarine">
-                    <img src="../../assets/img/gold_medal.png" style="width:100%; height:100%;">
+            <div class="align: text-center">
+                <h2>
+                    <strong>Quiz Completed!</strong>
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="card col-md-6 border-0" style="background-color:aquamarine">
+                        <img src="../../assets/img/gold_medal.png" style="width:100%; height:100%;">
+                    </div>
+                    <div class="card col-md-6 border-0" style="background-color:aquamarine">
+                        <div class="row">
+
+                            <div class="col-md-10">
+                                <h4>
+                                    <strong>{{quizService.getParticipantName()}}</strong>
+                                </h4>
+                                <h5>
+                                    <strong>Score: {{quizService.correctAnswersCount}}/10 </strong>
+                                </h5>
+                                <span>
+                                    <h5>
+                                        <strong>Time Elapsed: {{quizService.displayTimeElapsed()}}</strong>
+                                    </h5>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <div class="col-md-4">
+                                    <button class="btn btn-success" (click)="OnSubmit()">Submit</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning" (click)="restart()">Restart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card col-md-6 border-0" style="background-color:aquamarine">
+
+
+            </div>
+
+            <br/>
+        </div>
+
+
+
+    </div>
+
+</div>
+<br/>
+<br/>
+
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <h3>Question with correct answer</h3>
+
+
+    </div>
+</div>
+
+<ng-container *ngFor="let qn of quizService.qns; let i = index">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div class="card col-md-7 jobs_index_middle_panels" style="background-color:aquamarine">
+                <div class="container">
                     <div class="row">
-                      
-                        <div class="col-md-10">
-                            <h4><strong>{{quizService.getParticipantName()}}</strong></h4>
-                            <h5><strong>Score: {{quizService.correctAnswersCount}}/10 </strong> </h5>
-                            <span><h5><strong>Time Elapsed: {{quizService.displayTimeElapsed()}}</strong></h5></span>
-                        </div>        
-                      </div>
-                      <div class="card-body"> 
-                         <div class="row justify-content-center">
-                        <div class="col-md-4">
-                            <button class="btn btn-success" (click)="OnSubmit()">Submit</button>
-                        </div>     
-                        <div class="col-md-4">
-                            <button class="btn btn-warning" (click)="restart()">Restart</button>
-                        </div> 
-                         </div>         
-                      </div>
+                        <span class="card-title">{{i+1}}- </span>
+                        <p>{{qn.Question1}}</p>
+                        <div class="container" *ngIf="qn.ImageName != null">
+                            <img class="center" [src]="quizService.rootUrl + '/Images/' + qn.ImageName" style="width:350px; height:200px">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="list-group">
+                                <ng-container *ngFor="let option of qn.Options; let j = index">
+                                    <li *ngIf="option != null" class="list-group-item">
+                                        <span *ngIf="qn.correct == j">
+                                            <li class="list-group-item list-group-item-success">{{option}}
+                                                <div class="badge badge-success float-right">
+                                                    Correct Answer
+                                                </div>
+                                            </li>
+                                        </span>
+                                        <span *ngIf="qn.answer == j && qn.correct != j">
+                                            <li class="list-group-item list-group-item-danger">{{option}}
+                                                <div class="badge badge-danger float-right">
+                                                    Your Answer
+                                                </div>
+                                            </li>
+                                        </span>
+                                        <span *ngIf="qn.answer != j && qn.correct != j">
+                                            <li class="list-group-item list-group-item-light">{{option}}</li>
+                                        </span>
+                                    </li>
+
+                                </ng-container>
+                            </ul>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
-            
-              
-          </div>
-          
-          <br/>
-          </div>
+
+        </div>
     </div>
-    
-  </div>
+
+
+    <br/>
+    <br/>
+</ng-container>

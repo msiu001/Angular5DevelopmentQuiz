@@ -6,29 +6,32 @@
     <div class="col s8 offset-s2">
       <div class="card text-white bg-info mb-3 text-center" style="max-width: 50rem;">
         <div class="card-header">
-          <strong><h3>Quiz</h3></strong>
+          <strong>
+            <h3>Quiz</h3>
+          </strong>
         </div>
         <div class="card-body" align="left">
           <h5 class="card-title">Question {{quizService.qnProgress +1}}:</h5>
-          <p class="card-text">{{quizService.qns[quizService.qnProgress].Question1}}</p><!-- variable Question1 is from Web API project created for this project -->
+          <p class="card-text">{{quizService.qns[quizService.qnProgress].Question1}}</p>
+          <!-- variable Question1 is from Web API project created for this project -->
           <div *ngIf="quizService.qns[quizService.qnProgress].ImageName != null">
             <img class="center" [src]="quizService.rootUrl + '/Images/' + quizService.qns[quizService.qnProgress].ImageName" style="width:350px; height:200px">
           </div>
           <ul class="collection answer">
-              <ng-container *ngFor= "let option of quizService.qns[quizService.qnProgress].Options; let i = index">       
-                  <button *ngIf="option != null" type="button" class="btn btn-default btn-lg btn-block" (click)="Answer(quizService.qns[quizService.qnProgress].QnID, i)">
-                      {{option}}
-                  </button>    
-                </ng-container>
+            <ng-container *ngFor="let option of quizService.qns[quizService.qnProgress].Options; let i = index">
+              <button type="button" class="btn btn-default btn-lg btn-block" (click)="Answer(quizService.qns[quizService.qnProgress].QnID, i)">
+                {{option}}
+              </button>
+            </ng-container>
           </ul>
           <div align="right">
-              <span>Time Elapsed: {{quizService.displayTimeElapsed()}}</span>
+            <span>Time Elapsed: {{quizService.displayTimeElapsed()}}</span>
           </div>
           <div class="progress">
-              <div class="progress-bar bg-warning" role="progressbar" [style.width.%]="(quizService.qnProgress + 1 )*10">
-                
+            <div class="progress-bar bg-warning" role="progressbar" [style.width.%]="(quizService.qnProgress + 1 )*10">
+
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>

@@ -14,10 +14,10 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
     this.quizService.getAnswers().subscribe(
       (data : any) => {
-        this.quizService.correctAnswersCount =0;
+        this.quizService.correctAnswersCount = 0;
         this.quizService.qns.forEach((e,i) => {
           if(e.answer == data[i])
-          this.quizService.correctAnswersCount++;                   
+          this.quizService.correctAnswersCount++;            
           e.correct = data[i];
         });
       }

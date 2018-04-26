@@ -2,7 +2,7 @@
 </app-navbar>
 <br/>
 <div class="container">
-  <div class="row" align="center" *ngIf="quizService.qns">
+  <div class="row" align="center" *ngIf="quizService.qns && this.quizService.qnProgress != 10">
     <div class="col s8 offset-s2">
       <div class="card text-white bg-info mb-3 text-center" style="max-width: 50rem;">
         <div class="card-header">
